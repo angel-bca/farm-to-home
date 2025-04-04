@@ -1,0 +1,193 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+#navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: .5rem 5rem;
+    box-shadow: 5px 5px 20px rgba(0,0,0,.5);
+    background: black;
+    transition: all 0.3s ease-in-out;
+}
+.navbar .navbar-brand{
+    font-size:25px;
+    font-weight: 800;
+    color: #29f700 !important;
+}
+#navbarSupportedContent a{
+    color:#fff;
+    border-bottom: 2px solid transparent;
+}
+#navbarSupportedContent a:hover{
+    border-bottom: 2px solid #29f700;
+    transition: 0.3s;
+}
+#navbarSupportedContent button{
+    background: #29f700;
+    width: 5rem;
+    border-radius: 15px;
+}
+section{
+    width: 100x;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#home{
+    background: url(https://farmm2home.com/wp-content/uploads/2024/05/F2H-Hero-Cover-scaled.webp);
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+}
+.signin{
+    background:green !important;
+    color: white !important;
+    box-shadow: 2px 4px 5px rgba(0,0,0,.3);
+}
+/******About*****/
+#about h1{
+    font-weight: 800;
+    font-size: 50px;
+    color:rgb(26, 1, 1);
+}
+/*****Products******/
+#product{
+    background:#e5e5e5;
+}
+#product h1{
+    font-size: 50px;
+    letter-spacing: 2px;
+    font-weight: 700
+
+}
+#product img{
+    width: 200px;
+    height:200px;
+}
+.card{
+    width: 250px;
+    height:300px;
+    background:#e5e5e5 !important;
+    border :none !important;
+    box-shadow: 15px 20px 20px rgba(0,0,0,.3),
+                inset 4px 4px 10px white;
+    border-radius: 20px !important;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 60px;
+    transition: transform 0.3s ease-in-out;
+
+}
+.card:hover{
+    box-shadow: inset 5px 5px 10px rgba(0,0,0,.3),
+                inset -4px -4px 10px white;
+    transform: scale(1.05);
+
+}
+/******Contact********/
+#contact img{
+    height: 100%
+}
+.box{
+    width: 80% ! important;
+
+}
+#contact input{
+    margin: 10px 0px;
+
+}
+#contact textarea
+{
+    margin: 10px 0px;
+
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: black; /* Changed to white to match the navbar */
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.dropbtn:hover {
+    background: rgba(255, 255, 255, 0.1); /* Light hover effect */
+}
+
+/* Dropdown Menu */
+.dropdown-content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: black;
+    border-radius: 5px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+    width: 160px;
+     /* Initially hidden */
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.2s ease-in-out;
+    z-index: 9999;
+    padding: 5px 0;
+    visibility: hidden;
+}
+
+/* Show Dropdown on Click */
+.dropdown.active .dropdown-content {
+    display:flex; /* Show dropdown */
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Dropdown Items */
+.dropdown-content a {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #333; /* Text color */
+    font-weight: 500;
+    text-decoration: none; /* Remove underline */
+    transition: background 0.2s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background: rgba(0, 0, 0, 0.05); /* Light hover effect */
+    color: #000;
+}
+
+/* Dropdown Icons */
+.dropdown-content a i {
+    margin-right: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Fixes dropdown visibility issue on small screens */
+@media (max-width: 600px) {
+    .dropdown-content {
+        width: 140px;
+    }
+}
