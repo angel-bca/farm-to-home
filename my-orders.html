@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Orders</title>
+    <link rel="stylesheet" href="my-orders.css">
+</head>
+    
+<body>
+    <nav>
+        <a href="index.html" class="return-home">🏠 Return Home</a>
+
+        <h2>🛒 My Orders</h2>
+    </nav>
+
+    <div class="container">
+        <h2>Your Orders</h2>
+        <div id="orders-list">
+            <p>Loading your orders...</p>
+        </div>
+    </div>
+
+    <script>
+        async function fetchOrders() {
+            const user = JSON.parse(localStorage.getItem("user"));
+            if (!user) {
+                alert("Please log in to view your orders.");
+                window.location.href = "login.html";
+                return;
+            }
+    
+            console.log("📤 Requesting orders for:", user.name);
+    
+            try {
+                const response = await fetch(`http://localhost:5001/api/orders/${encodeURIComponent(user.name)}`);
+    
+                if (!response.ok) {
+                    throw new Error("Failed to fetch orders");
+                }
+    
+                const orders = await response.json();
+                console.log("📥 Orders received:", orders);
+    
+                const ordersList = document.getElementById("orders-list");
+                ordersList.innerHTML = ""; // Clear loading text
+    
+                if (orders.length === 0) {
+                    ordersList.innerHTML = "<p>You have no orders yet.</p>";
+                    return;
+                }
+    
+                orders.forEach(order => {
+                    const orderDiv = document.createElement("div");
+                    orderDiv.className = "order";
+                    orderDiv.innerHTML = `
+                        <h3>Order ID: ${order._id}</h3>
+                        <p><strong>Total Price:</strong> ₹${order.totalPrice}</p>
+                        <p><strong>Address:</strong> ${order.address}</p>
+                        <p><strong>Ordered Items:</strong></p>
+                        <ul>
+                            ${order.cart.map(item => `<li>${item.name} - ₹${item.price}</li>`).join("")}
+                        </ul>
+                        <hr>
+                    `;
+                    ordersList.appendChild(orderDiv);
+                });
+            } catch (error) {
+                console.error("❌ Error fetching orders:", error);
+                document.getElementById("orders-list").innerHTML = "<p>Error loading orders.</p>";
+            }
+        }
+    
+        fetchOrders();
+    </script>
+    
+    
+    
+</body>
+</html>

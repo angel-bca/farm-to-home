@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <a class="navbar-brand">Farm to Home</a>
+        <a href="cart.html" class="btn cart-btn">🛒 Back to Cart</a>
+    </nav>
+
+    <div class="container">
+        <h1>Checkout</h1>
+        <form id="checkout-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+        
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+        
+            <label for="address">Shipping Address:</label>
+            <textarea id="address" name="address" autocomplete="street-address" required></textarea>
+        
+            <h2>Total Price: ₹<span id="final-price">0.00</span></h2>
+        
+            <button type="submit" class="btn btn-success">Place Order</button>
+        </form>
+        
+    </div>
+
+    <script>
+        function loadCheckoutDetails() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+            document.getElementById("final-price").innerText = total.toFixed(2);
+        }
+    
+        document.getElementById("checkout-form").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+    
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let address = document.getElementById("address").value;
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+    
+            if (!name || !email || !address || cart.length === 0) {
+                alert("Please fill in all details and add products to your cart before placing the order.");
+                return;
+            }
+    
+            let orderData = {
+                name: name,
+                email: email,
+                address: address,
+                cart: cart,
+                totalPrice: totalPrice
+            };
+    
+            try {
+                let response = await fetch("http://localhost:5001/api/orders/place", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(orderData)
+                });
+    
+                let result = await response.json();
+    
+                if (result.success) {
+                    alert("Order Placed Successfully!");
+                    localStorage.removeItem("cart"); // Clear cart after order
+                    window.location.href = "order-success.html"; // Redirect to confirmation page
+                } else {
+                    alert("Error placing order. Please try again.");
+                }
+            } catch (error) {
+                alert("Server error. Please try again later.");
+                console.error(error);
+            }
+        });
+    
+        loadCheckoutDetails();
+    </script>
+    
+    
+   
+    
+
+</body>
+</html>

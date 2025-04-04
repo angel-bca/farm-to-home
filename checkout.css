@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    padding-top: 80px;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar .navbar-brand {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+}
+
+/* Back to Cart Button */
+.navbar .cart-btn {
+    background: white;
+    color: #2E7D32;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: 0.3s ease-in-out;
+    position: absolute;
+    right: 20px;
+}
+
+.navbar .cart-btn:hover {
+    background: #C8E6C9;
+}
+
+/* Checkout Container */
+.container {
+    max-width: 600px;
+    margin: 80px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.01);
+}
+
+/* Checkout Title */
+h1 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #2E7D32;
+}
+
+/* Form Fields */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin: 8px 0 4px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+input:focus, textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Total Price */
+h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #2E7D32;
+    margin-top: 10px;
+}
+
+/* Place Order Button */
+.btn-success {
+    background: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.btn-success:hover {
+    background: #2E7D32;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin: 100px auto;
+    }
+
+    .navbar .cart-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
